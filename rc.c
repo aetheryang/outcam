@@ -31,9 +31,6 @@ static int fd = -1;
 struct buffer *buffers = NULL;
 static unsigned int n_buffers = 0;
 
-FILE *file_fd;
-static unsigned long file_length;
-static unsigned char *file_name;
 //////////////////////////////////////////////////////
 //获取一帧数据
 //////////////////////////////////////////////////////
@@ -44,7 +41,6 @@ int init_pic()
 	struct v4l2_format fmt;
 	unsigned int i;
 
-	file_fd = fopen ("test-mmap.jpg", "w");		 //图片文件名
 
 	fd = open (dev_name, O_RDWR /* required */  | O_NONBLOCK, 0);	//打开设备
 
@@ -59,7 +55,7 @@ int init_pic()
 	fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
 	ioctl (fd, VIDIOC_S_FMT, &fmt);				 //设置图像格式
 
-	file_length = fmt.fmt.pix.bytesperline * fmt.fmt.pix.height;	//计算图片大小
+	int file_length = fmt.fmt.pix.bytesperline * fmt.fmt.pix.height;	//计算图片大小
 
 	struct v4l2_requestbuffers req;
 	CLEAR (req);

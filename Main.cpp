@@ -5,7 +5,7 @@
     > Created Time: Sun 05 Jan 2014 09:23:17 PM CST
  ************************************************************************/
 
-int progress_num=0,rs = 1, sec = 100, end = 0;
+int bl=1,progress_num=0,rs = 1, sec = 100, end = 0;
 #define PIx 640
 #define PIy 480
 

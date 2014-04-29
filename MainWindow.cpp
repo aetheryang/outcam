@@ -35,7 +35,7 @@ void MainWindow::pfresh ()
         for(i=0;i<sec;i++)
         {
         take_pic();
-    progress->setValue((int)((double)progress_num*100/sec));
+    progress->setValue(1+(int)((double)progress_num*100/sec));
         progress->repaint();
 		pwidget->repaint ();
         add_pro();

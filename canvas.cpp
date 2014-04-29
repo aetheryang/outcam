@@ -37,12 +37,7 @@ int read_frame()
     buf.memory = V4L2_MEMORY_MMAP;
 
     ioctl (fd, VIDIOC_DQBUF, &buf);				 //出列采集的帧缓冲
-    assert (buf.index < n_buffers);
-    //printf ("buf.index dq is %d,\n", buf.index);
     head=(int*)buffers[buf.index].start;
-    //printf("head=%d\n",head);
-    //fwrite (buffers[buf.index].start, buffers[buf.index].length, 1, file_fd);	//将其写入文件中
-    //printf ("start at :%d,length :%d\n", buffers[buf.index].start, buffers[buf.index].length);
     for(i=0;i<2*PIx*PIy;i++)
     {
         buhead[i]=*head;

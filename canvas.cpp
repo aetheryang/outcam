@@ -68,13 +68,25 @@ void Canvas::paintEvent (QPaintEvent * event)
     for(i=0;i<PIy;i+=1)
         for(j=0;j<PIx;j+=2)
         {
-            cal=(*head>>0)&0xff;
-            pen.setColor(QColor(cal,cal,cal));
+            int U,V,Y1,Y2,R,G,B;
+            Y1=(*head>>0 )&0xff;
+            U= (*head>>8 )&0xff;
+            Y2=(*head>>16)&0xff;
+            V= (*head>>24)&0xff;
+            R=Y1+1.4075*(V-128);
+            G=Y1-0.3455*(U-128)-0.7169*(V-128);
+            B=Y1+1.779*(U-128);
+            cal=Y1;
+            pen.setColor(QColor(R,G,B));
             painter.setPen(pen);
             painter.drawPoint (j, i);
             addbuf(j,i,cal);
-            cal=(*head>>16)&0xff;
-            pen.setColor(QColor(cal,cal,cal));
+
+            R=Y2+1.4075*(V-128);
+            G=Y2-0.3455*(U-128)-0.7169*(V-128);
+            B=Y2+1.779*(U-128);
+            cal=Y1;
+            pen.setColor(QColor(R,G,B));
             painter.setPen(pen);
             painter.drawPoint (j+1, i);
             addbuf(j+1,i,cal);
@@ -91,7 +103,6 @@ void showCanvas::paintEvent (QPaintEvent * event)
     for(i=0;i<PIx;i++)
         for(j=0;j<PIy;j++)
         {
-     //       cout<<i<<"+"<<j<<endl;
             cal=(int)((double)bufxy[i][j]/sec);
             pen.setColor(QColor(cal,cal,cal));
             painter.setPen(pen);

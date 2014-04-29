@@ -8,7 +8,6 @@
 #include<QWidget>
 #include<qmainwindow.h>
 #include<QObject>
-class show_dialog;
 class Canvas:public QWidget
 {
   public:

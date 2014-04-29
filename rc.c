@@ -159,10 +159,14 @@ int take_pic ()
 }
 int end_pic()
 {
-  unmap:
+    enum v4l2_buf_type type;
+    type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+unmap:
 	for (int i = 0; i < n_buffers; ++i)
 		if (-1 == munmap (buffers[i].start, buffers[i].length))
 			printf ("munmap error");
+	if (-1 == ioctl (fd, VIDIOC_STREAMOFF, &type))	//开始捕捉图像数据
+		printf ("VIDIOC_STREAMOFF failed\n");
 	close (fd);
 }
 int takepic()

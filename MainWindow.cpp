@@ -67,6 +67,7 @@ void MainWindow::qinit_yuan ()
 void MainWindow::qinit_zhengfang_yi ()
 {
 	rs = 0;
+    bl=-bl;
     clearbuf();
 }
 
@@ -138,7 +139,7 @@ MainWindow::MainWindow ()
 	QPushButton *in_y = new QPushButton ("&takepic", this);
 	QPushButton *in_y_1 = new QPushButton ("video&1", this);
 	QPushButton *in_z = new QPushButton ("video&0", this);
-	QPushButton *in_z_1 = new QPushButton ("&begin", this);
+	QPushButton *in_z_1 = new QPushButton ("&bw<->c", this);
 	QPushButton *run = new QPushButton ("&RUN", this);
 	QPushButton *stop = new QPushButton ("&STOP", this);
 	QPushButton *step = new QPushButton ("S&TEP", this);

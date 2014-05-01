@@ -23,10 +23,12 @@ int clearbuf()
     for(i=0;i<PIx;i++)
         for(j=0;j<PIy;j++)
             bufxy[i][j]=0;
+    return 1;
 }
 int addbuf(int x,int y,int ans)
 {
     bufxy[x][y]+=ans;
+    return ans;
 }
 int read_frame()
 {
@@ -47,7 +49,7 @@ int read_frame()
     ioctl (fd, VIDIOC_QBUF, &buf);				 //再将其入列
     return 1;
 }
-void Canvas::paintEvent (QPaintEvent * event)
+void Canvas::paintEvent ()
 {
 	int i, j,*head,cal;
 	QPainter painter (this);
@@ -118,7 +120,7 @@ void Canvas::paintEvent (QPaintEvent * event)
 }
 showCanvas::showCanvas(){}
 showCanvas::~showCanvas(){}
-void showCanvas::paintEvent (QPaintEvent * event)
+void showCanvas::paintEvent ()
 {
     int i,j,cal;
 	QPainter painter (this);

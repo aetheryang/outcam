@@ -24,6 +24,7 @@ using namespace std;
 int add_pro()
 {
         progress_num+=1;
+        return progress_num;
 }
 void MainWindow::pfresh ()
 {
@@ -48,7 +49,7 @@ void MainWindow::pfresh ()
 void MainWindow::qinit_yuan_yi ()
 {
 	rs = 0;
-    dev_name = "/dev/video1";			 //摄像头设备名
+    dev_name =(char *) "/dev/video1";			 //摄像头设备名
     clearbuf();
     pwidget->repaint ();
 }
@@ -75,7 +76,7 @@ void MainWindow::qinit_zhengfang ()
 {
 	rs = 0;
     clearbuf();
-    dev_name = "/dev/video0";			 //摄像头设备名
+    dev_name =(char *) "/dev/video0";			 //摄像头设备名
 	pwidget->repaint ();
 }
 
@@ -126,10 +127,6 @@ Canvas::~Canvas ()
 
 MainWindow::~MainWindow ()
 {
-}
-int setcount(int a)
-{
-    int i;
 }
 MainWindow::MainWindow ()
 {

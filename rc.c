@@ -26,7 +26,7 @@ struct buffer
 	size_t length;
 };
 
-static char *dev_name = "/dev/video0";			 //摄像头设备名
+static char *dev_name = (char *)"/dev/video0";			 //摄像头设备名
 static int fd = -1;
 struct buffer *buffers = NULL;
 static unsigned int n_buffers = 0;
@@ -55,7 +55,7 @@ int init_pic()
 	fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
 	ioctl (fd, VIDIOC_S_FMT, &fmt);				 //设置图像格式
 
-	int file_length = fmt.fmt.pix.bytesperline * fmt.fmt.pix.height;	//计算图片大小
+	//int file_length = fmt.fmt.pix.bytesperline * fmt.fmt.pix.height;	//计算图片大小
 
 	struct v4l2_requestbuffers req;
 	CLEAR (req);
@@ -103,6 +103,7 @@ int init_pic()
 		if (-1 == ioctl (fd, VIDIOC_QBUF, &buf)) //申请到的缓冲进入列队
 			printf ("VIDIOC_QBUF failed\n");
 	}
+    return 1;
 
 }
 
@@ -157,15 +158,16 @@ int end_pic()
 {
     enum v4l2_buf_type type;
     type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-unmap:
-	for (int i = 0; i < n_buffers; ++i)
+//unmap:
+	for (unsigned int i = 0; i < n_buffers; ++i)
 		if (-1 == munmap (buffers[i].start, buffers[i].length))
 			printf ("munmap error");
 	if (-1 == ioctl (fd, VIDIOC_STREAMOFF, &type))	//开始捕捉图像数据
 		printf ("VIDIOC_STREAMOFF failed\n");
 	close (fd);
+    return fd;
 }
-int takepic()
+void takepic()
 {
     init_pic();
     begin_pic();

@@ -49,7 +49,7 @@ int read_frame()
     ioctl (fd, VIDIOC_QBUF, &buf);				 //再将其入列
     return 1;
 }
-void Canvas::paintEvent ()
+void Canvas::paintEvent (QPaintEvent * event)
 {
 	int i, j,*head,cal;
 	QPainter painter (this);
@@ -120,7 +120,7 @@ void Canvas::paintEvent ()
 }
 showCanvas::showCanvas(){}
 showCanvas::~showCanvas(){}
-void showCanvas::paintEvent ()
+void showCanvas::paintEvent (QPaintEvent * event)
 {
     int i,j,cal;
 	QPainter painter (this);

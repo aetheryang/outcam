@@ -13,14 +13,14 @@ class Canvas:public QWidget
   public:
 	Canvas ();
 	~Canvas ();
-	void paintEvent ();
+	void paintEvent (QPaintEvent *);
 };
 class showCanvas:public QWidget
 {
   public:
 	showCanvas ();
 	~showCanvas ();
-	void paintEvent ();
+	void paintEvent (QPaintEvent *);
 };
 class MainWindow:public QWidget
 {

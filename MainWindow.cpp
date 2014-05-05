@@ -139,7 +139,7 @@ MainWindow::MainWindow ()
 	QPushButton *in_z_1 = new QPushButton ("&bw<->c", this);
 	QPushButton *run = new QPushButton ("&RUN", this);
 	QPushButton *stop = new QPushButton ("&STOP", this);
-	QPushButton *step = new QPushButton ("S&TEP", this);
+	QPushButton *step = new QPushButton ("S&how", this);
 	QPushButton *quit = new QPushButton ("&QUIT", this);
     shc=new showCanvas();
     progress=new QProgressBar;

@@ -115,7 +115,18 @@ void Canvas::paintEvent (QPaintEvent * event)
                 addbuf(j+1,i,cal);
                 head++;
             }
-
+    }
+    for(i=PIx/2-5,j=PIy/2;i<=PIx/2+5;i++)
+    {
+        pen.setColor(QColor(255,0,0));
+        painter.setPen(pen);
+        painter.drawPoint(i,j);
+    }
+    for(j=PIy/2-5,i=PIx/2;j<=PIy/2+5;j++)
+    {
+        pen.setColor(QColor(255,0,0));
+        painter.setPen(pen);
+        painter.drawPoint(i,j);
     }
 }
 showCanvas::showCanvas(){}
